@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Help: Feedpoint ham radio station app</title>
+<meta name="description" content="Answers about Feedpoint: trim from measurement, band rules and their dates, RF exposure, ADIF export, backups, restoring Pro and how to reach us.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F1ECE2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://mufa-tech.github.io/feedpoint/support/">
+<link rel="alternate" hreflang="en" href="https://mufa-tech.github.io/feedpoint/support/">
+<link rel="alternate" hreflang="x-default" href="https://mufa-tech.github.io/feedpoint/support/">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="preload" href="../assets/fonts/FiraSans-Regular.woff" as="font" type="font/woff" crossorigin>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Feedpoint">
+<meta property="og:title" content="Help: Feedpoint ham radio station app">
+<meta property="og:description" content="Answers about Feedpoint: trim from measurement, band rules and their dates, RF exposure, ADIF export, backups, restoring Pro and how to reach us.">
+<meta property="og:url" content="https://mufa-tech.github.io/feedpoint/support/">
+<meta property="og:image" content="https://mufa-tech.github.io/feedpoint/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../"><img src="../assets/icon.svg" alt="" width="32" height="32">Feedpoint</a>
+<nav class="main" aria-label="Main menu"><a href="../dipole-calculator/">Dipole</a><a href="../coax-loss-calculator/">Coax and SWR</a><a href="../rf-exposure-calculator/">RF exposure</a><a href="../support/" aria-current="page">Help</a></nav>
+
+</div></header>
+<main id="main" tabindex="-1">
+<div class="wrap prose">
+<h1>Help</h1>
+<p class="lead">Short answers to what people ask most. If yours is not here, write to us.</p>
+<details class="faq" id="trim" open><summary>How does trim from measurement work?</summary>
+<p>Build the antenna a little long and hang it. Find the frequency with the lowest SWR on your analyzer. In the app, open that antenna under <strong>Antennas → Trim from measurement</strong> and enter the reading; Feedpoint shows how much to cut from each leg (or from the end on an end-fed wire or a vertical), using L new = L × f measured / f target.</p><p>Save the measurement and the app learns this wire's real end effect K. From two or more cuts it also learns a fixed offset for the feed region, so the next cut lands closer. The free <a href="../dipole-calculator/">dipole calculator</a> on this site does the first step.</p>
+</details>
+<details class="faq" id="bands"><summary>Which countries and licence classes do the band rules cover?</summary>
+<p>The United States (Technician, General and Amateur Extra, plus Novice and Advanced for renewals), Canada (Basic, Basic + Morse, Basic with Honours, Advanced), the United Kingdom (Foundation, Intermediate, Full) and Germany (Klasse N, E and A). Each answer says allowed or not allowed with the clause behind it.</p><p>The rules are our own encoding of the regulation texts, and each set shows the date it was checked and links to its source. The current sets were checked between 29 October and 2 November 2026: 47 CFR Part 97 with the new 60 m rules of 13 February 2026, RBR-4 Issue 3 (July 2022), the Ofcom licence conditions with the 2024 power levels, and the Amateurfunkverordnung as amended in 2024 with class N. The IARU band plans for Regions 1, 2 and 3 show the agreed segments everywhere else; they are recommendations, not law. More countries follow in updates.</p>
+</details>
+<details class="faq" id="rf"><summary>Is the RF exposure result an official assessment?</summary>
+<p>No. It is an aid for your own evaluation. In the US it follows OET-65 with ground reflection, the controlled and uncontrolled limits of §1.1310 and the §1.1307(b) exemption test. In Germany it follows the BNetzA method with the 26. BImSchV limits, in the UK the ICNIRP 2020 general public levels of the Ofcom licence condition, elsewhere ICNIRP 2020 or 1998.</p><p>Every saved record carries the date, the inputs, the rule edition and the sources, so you can show how you got the numbers. Go by the rules in force and measure when in doubt. Find it under <strong>Tools → RF exposure</strong>; the <a href="../rf-exposure-calculator/">RF exposure calculator</a> on this site runs the US method.</p>
+</details>
+<details class="faq" id="adif"><summary>Which log format does the field log export?</summary>
+<p>ADIF 3.1.8, the current version of the amateur data interchange format, as .adi files that log services and award programmes accept. Open the log and tap <strong>Field → Export and spot → Share ADIF</strong>. CSV is there too.</p><p>For park activations the file carries both the generic MY_SIG and MY_SIG_INFO fields and the program-specific MY_POTA_REF. An activation with several park references gets one file per park. Files are plain ASCII by default; to keep letters like é or ø, change <strong>Settings → Names and places in log files</strong>.</p>
+</details>
+<details class="faq" id="backup"><summary>How do I back up or move to a new phone?</summary>
+<p><strong>Settings → Back up</strong> shares one file through the share sheet: save it to Files, Drive or mail it to yourself. On the new phone, <strong>Settings → Restore a backup</strong> and pick the file. Feedpoint shows what is in the backup before it replaces anything, and you can undo right after. We have no server, so the backup file is the only copy outside your phone.</p>
+</details>
+<details class="faq" id="restore"><summary>I bought Pro. How do I get it on another phone?</summary>
+<p>Open <strong>Settings → Restore purchases</strong> with the same Apple ID or Google account. On iPhone, Family Sharing works too. Pro is one payment; nothing renews.</p><p>The 7-day trial asks for no card and charges nothing. When it ends, every antenna, record and log you made stays yours to open, change and export.</p>
+</details>
+<details class="faq" id="offline"><summary>Does it need the internet or my location?</summary>
+<p>No. Everything is worked out on the phone, so it works on a summit with no signal. There is no location permission: you type your grid square (4 to 10 characters) or pick a reference. The only network use is the store, when you buy Pro.</p>
+</details>
+<details class="faq" id="wrong"><summary>A number looks wrong</summary>
+<p>Every result shows its formula with your numbers and the source it comes from. If it still looks wrong, write to <a href="mailto:hello@mufatech.com">hello@mufatech.com</a> with the inputs; a backup file helps. We answer every message and fix confirmed errors first. In the app, <strong>Settings → Send feedback</strong> opens a mail to the same address.</p>
+</details>
+<h2>Contact</h2>
+<p>Write to <a href="mailto:hello@mufatech.com">hello@mufatech.com</a>. One person reads every message.</p>
+<p class="note">We never ask for a password, licence documents or payment details by email.</p>
+<aside class="card app-note gap-top" aria-labelledby="about-h"><h2 id="about-h" class="h3">Feedpoint</h2><p>An offline station notebook for radio amateurs: antennas with trim from measurement, feedline loss and SWR, band rights by class, RF exposure records and a field log with ADIF. No account, no subscription.</p><div class="stores"><span class="store soon"><small>Google Play</small><b>Coming soon</b></span><span class="store soon"><small>App Store</small><b>Coming soon</b></span></div></aside>
+</div>
+
+</main>
+<footer><div class="wrap">
+<p class="disclaimer">Calculations are aids; go by the rules in force and your own measurement.</p>
+<p>Feedpoint is made by MufaTech, a small studio that builds offline tools you pay for once.</p>
+<nav aria-label="Site"><a href="../">Feedpoint</a><a href="../dipole-calculator/">Dipole calculator</a><a href="../coax-loss-calculator/">Coax loss and SWR</a><a href="../rf-exposure-calculator/">RF exposure calculator</a><a href="../support/">Help</a><a href="../privacy/">Privacy</a><a href="mailto:hello@mufatech.com">hello@mufatech.com</a></nav>
+</div></footer>
+
+</body>
+</html>

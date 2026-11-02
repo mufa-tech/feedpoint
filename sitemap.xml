@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://mufa-tech.github.io/feedpoint/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mufa-tech.github.io/feedpoint/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mufa-tech.github.io/feedpoint/"/>
+  </url>
+  <url>
+    <loc>https://mufa-tech.github.io/feedpoint/dipole-calculator/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mufa-tech.github.io/feedpoint/dipole-calculator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mufa-tech.github.io/feedpoint/dipole-calculator/"/>
+  </url>
+  <url>
+    <loc>https://mufa-tech.github.io/feedpoint/coax-loss-calculator/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mufa-tech.github.io/feedpoint/coax-loss-calculator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mufa-tech.github.io/feedpoint/coax-loss-calculator/"/>
+  </url>
+  <url>
+    <loc>https://mufa-tech.github.io/feedpoint/rf-exposure-calculator/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mufa-tech.github.io/feedpoint/rf-exposure-calculator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mufa-tech.github.io/feedpoint/rf-exposure-calculator/"/>
+  </url>
+  <url>
+    <loc>https://mufa-tech.github.io/feedpoint/support/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mufa-tech.github.io/feedpoint/support/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mufa-tech.github.io/feedpoint/support/"/>
+  </url>
+  <url>
+    <loc>https://mufa-tech.github.io/feedpoint/privacy/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mufa-tech.github.io/feedpoint/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mufa-tech.github.io/feedpoint/privacy/"/>
+  </url>
+</urlset>

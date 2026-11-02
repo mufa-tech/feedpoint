@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>RF exposure calculator: FCC safe distance for hams</title>
+<meta name="description" content="Minimum distance by the FCC OET-65 method with ground reflection, controlled and uncontrolled limits, mode factors and the §1.1307(b) exemption test.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F1ECE2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://mufa-tech.github.io/feedpoint/rf-exposure-calculator/">
+<link rel="alternate" hreflang="en" href="https://mufa-tech.github.io/feedpoint/rf-exposure-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://mufa-tech.github.io/feedpoint/rf-exposure-calculator/">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="preload" href="../assets/fonts/FiraSans-Regular.woff" as="font" type="font/woff" crossorigin>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Feedpoint">
+<meta property="og:title" content="RF exposure calculator: FCC safe distance for hams">
+<meta property="og:description" content="Minimum distance by the FCC OET-65 method with ground reflection, controlled and uncontrolled limits, mode factors and the §1.1307(b) exemption test.">
+<meta property="og:url" content="https://mufa-tech.github.io/feedpoint/rf-exposure-calculator/">
+<meta property="og:image" content="https://mufa-tech.github.io/feedpoint/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../"><img src="../assets/icon.svg" alt="" width="32" height="32">Feedpoint</a>
+<nav class="main" aria-label="Main menu"><a href="../dipole-calculator/">Dipole</a><a href="../coax-loss-calculator/">Coax and SWR</a><a href="../rf-exposure-calculator/" aria-current="page">RF exposure</a><a href="../support/">Help</a></nav>
+
+</div></header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<p class="crumb"><a href="../">Feedpoint</a></p>
+<h1>RF exposure calculator</h1>
+<p class="lead">The minimum distance between your antenna and people under the FCC rules, worked out the OET-65 way: power density with ground reflection, averaged over the time you actually transmit.</p>
+<div class="calc">
+<form class="panel" id="calc-form" data-calc="rf" novalidate>
+<fieldset class="choice"><legend>Lengths in</legend><div class="pills"><label class="pill"><input type="radio" name="units" value="ft" checked><span>feet and inches</span></label><label class="pill"><input type="radio" name="units" value="m"><span>metres</span></label></div></fieldset>
+<div class="field"><label for="r-f">Frequency</label>
+<div class="joined"><input id="r-f" name="r-f" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="14.35" required aria-describedby="r-f-hint r-f-err"><span class="unit">MHz</span></div>
+<span class="hint" id="r-f-hint">On HF the top of the band gives the largest distance.</span><span class="err" id="r-f-err" hidden></span></div>
+<div class="field"><span class="label" id="r-f-l">Band tops</span><div class="opts" role="group" aria-labelledby="r-f-l" data-band-for="r-f"><button type="button" data-f="2" aria-pressed="false">160 m</button><button type="button" data-f="4" aria-pressed="false">80 m</button><button type="button" data-f="7.3" aria-pressed="false">40 m</button><button type="button" data-f="10.15" aria-pressed="false">30 m</button><button type="button" data-f="14.35" aria-pressed="true">20 m</button><button type="button" data-f="18.168" aria-pressed="false">17 m</button><button type="button" data-f="21.45" aria-pressed="false">15 m</button><button type="button" data-f="24.99" aria-pressed="false">12 m</button><button type="button" data-f="29.7" aria-pressed="false">10 m</button><button type="button" data-f="54" aria-pressed="false">6 m</button><button type="button" data-f="148" aria-pressed="false">2 m</button><button type="button" data-f="225" aria-pressed="false">1.25 m</button><button type="button" data-f="450" aria-pressed="false">70 cm</button><button type="button" data-f="928" aria-pressed="false">33 cm</button><button type="button" data-f="1300" aria-pressed="false">23 cm</button></div></div>
+<div class="field-row two"><div class="field"><label for="r-pep">Power (PEP)</label>
+<div class="joined"><input id="r-pep" name="r-pep" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="100" required aria-describedby="r-pep-hint r-pep-err"><span class="unit">W</span></div>
+<span class="hint" id="r-pep-hint">Transmitter output, peak envelope power.</span><span class="err" id="r-pep-err" hidden></span></div><div class="field"><label for="r-mode">Mode</label><select id="r-mode" name="r-mode" aria-describedby="r-mode-hint"><option value="ssb" selected>SSB voice</option><option value="ssbProcessed">SSB voice, heavy processing</option><option value="cw">CW</option><option value="fm">FM voice</option><option value="rtty">RTTY</option><option value="digital">FT8, FT4 and other digital</option><option value="carrier">Carrier (tuning)</option><option value="packet">Packet</option><option value="sstv">SSTV</option><option value="am">AM voice</option><option value="atv">ATV, AM</option><option value="atvVsb">ATV, vestigial sideband</option></select><span class="hint" id="r-mode-hint"></span></div></div>
+<fieldset class="choice"><legend>Time on the air</legend><div class="pills"><label class="pill"><input type="radio" name="r-time" value="share" checked><span>Share</span></label><label class="pill"><input type="radio" name="r-time" value="cycle"><span>On / off</span></label><label class="pill"><input type="radio" name="r-time" value="keyDown"><span>Key down</span></label></div></fieldset>
+<div class="field-row two" data-time="share"><div class="field"><label for="r-share">Transmitting</label>
+<div class="joined"><input id="r-share" name="r-share" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="50" aria-describedby="r-share-hint r-share-err"><span class="unit">%</span></div>
+<span class="hint" id="r-share-hint">About 50 % in an everyday QSO, more in a contest or a pile-up.</span><span class="err" id="r-share-err" hidden></span></div></div>
+<div class="field-row two" data-time="cycle" hidden><div class="field"><label for="r-on">On</label>
+<div class="joined"><input id="r-on" name="r-on" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="5" aria-describedby="r-on-err"><span class="unit">min</span></div>
+<span class="err" id="r-on-err" hidden></span></div><div class="field"><label for="r-off">Off</label>
+<div class="joined"><input id="r-off" name="r-off" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="5" aria-describedby="r-off-err"><span class="unit">min</span></div>
+<span class="err" id="r-off-err" hidden></span></div><p class="hint wide">The busiest 6 or 30 minute window counts.</p></div>
+<p class="hint" data-time="keyDown" hidden>Transmitting all the time: the worst case.</p>
+<details class="more" open><summary>Feedline, gain and distance</summary>
+<div class="field-row two"><div class="field"><label for="r-loss">Feedline loss</label>
+<div class="joined"><input id="r-loss" name="r-loss" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="0" aria-describedby="r-loss-hint r-loss-err"><span class="unit">dB</span></div>
+<span class="hint" id="r-loss-hint">Leave 0 for the safe side.</span><span class="err" id="r-loss-err" hidden></span></div><div class="field"><label for="r-gain">Antenna gain</label>
+<div class="joined"><input id="r-gain" name="r-gain" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="2.15" aria-describedby="r-gain-hint r-gain-err"><span class="unit">dBi</span></div>
+<span class="hint" id="r-gain-hint">Toward the nearest people. A dipole is 2.15 dBi.</span><span class="err" id="r-gain-err" hidden></span></div></div>
+<label class="check"><input type="checkbox" id="r-loop" name="r-loop"><span>Magnetic loop</span></label>
+<div class="field"><label for="r-sep">Distance to people</label>
+<div class="joined"><input id="r-sep" name="r-sep" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" data-kind="length" aria-describedby="r-sep-hint r-sep-err"><span class="unit" data-unit="len">ft-in</span></div>
+<span class="hint" id="r-sep-hint">Optional. The nearest place someone can be: a neighbour's garden, the street, a room below.</span><span class="err" id="r-sep-err" hidden></span></div>
+</details>
+</form>
+<section class="results" aria-labelledby="res-h">
+<h2 id="res-h" class="sr">Result</h2>
+<div id="calc-nojs" class="callout"><p>This calculator runs in your browser and needs JavaScript. Nothing is sent anywhere.</p></div>
+<div id="res" class="res-card card" aria-live="polite" hidden></div>
+<p class="note">Worked out in your browser. Nothing you type leaves this page.</p>
+</section>
+</div>
+<script type="application/json" id="calc-data">{"locale":"en-US","decimal":".","units":"ft","t":{"errEmpty":"Enter a number.","errNumber":"That is not a number this page can read.","errFeet":"Write it like 66' 2 5/8\" or 66.2.","errPositive":"It has to be more than 0.","warning":"Note","stop":"No result","good":"Fine","howTitle":"How it was worked out","ft":"ft","m":"m","cm":"cm","mhz":"MHz","db":"dB","w":"W","percent":"%","waiting":"Enter frequency and power to see the distances.","tier_controlled":"Controlled","tier_uncontrolled":"Uncontrolled","tierHelp_controlled":"You and people who know about the exposure","tierHelp_uncontrolled":"Neighbours, family, passers-by","minDistance":"Minimum distance","freeSpace":"Without ground reflection: {d}","limitLine":"Limit {limit}, {window} minute average · {clause}","meets":"Meets it at {d}","tooClose":"Too close at {d}","stepAverage":"Average power: {pep} × {mode} × {on} = {avg}","stepAntenna":"At the antenna after {loss}: {p}","stepEirp":"EIRP with {gain}: {eirp} (ERP {erp})","distanceFormula":"R = √(2.56 × EIRP / (4π × S)) = √(2.56 × {eirp} / (4π × {s})) = {r}","modeFactor":"mode factor {f}","estimate":"estimate, not in OET-65B Table 2","nearTitle":"Close to the antenna","near":"The distance is inside λ/2π ({b}). For wire antennas the far-field estimate is on the safe side here (OET-65 p. 19).","loopBlock":"Inside λ/2π ({b}) a small loop's field is stronger than this estimate, so no distance is given. Measure, or use a near-field model.","loopWarn":"The estimate holds from λ/2π ({b}) outward. Keep people farther away than that.","exempt":"Exempt at {d}","exemptText":"ERP {erp} is at or below the {t} threshold of 47 CFR §1.1307(b)(3)(i)(C).","notExempt":"Not exempt at {d}","notExemptText":"ERP {erp} is above the {t} threshold of 47 CFR §1.1307(b)(3)(i)(C), so the evaluation above is the one that counts.","exemptNa":"Exemption test not usable","exemptNaText":"At {d} you are inside λ/2π ({b}); the exemption table does not apply there.","outOfRange":"The FCC table has no limit for {f}.","bad":"These values give no distance. Check the frequency, power and gain.","badShare":"The share is a percentage from 1 to 100.","badCycle":"Minutes on must be more than 0."},"modes":{"ssb":"SSB voice","ssbProcessed":"SSB voice, heavy processing","cw":"CW","fm":"FM voice","rtty":"RTTY","digital":"FT8, FT4 and other digital","carrier":"Carrier (tuning)","packet":"Packet","sstv":"SSTV","am":"AM voice","atv":"ATV, AM","atvVsb":"ATV, vestigial sideband"},"exposure":{"asOf":"2026-11-02","source":[{"id":"fcc1310","title":"47 CFR §1.1310(e)(1) Table 1, Limits for Maximum Permissible Exposure (85 FR 18145, 1 Apr 2020)"},{"id":"fcc1307","title":"47 CFR §1.1307(b)(3)(i)(C) Table 1, single RF source exemption thresholds"},{"id":"oet65b","title":"FCC OET Bulletin 65 Supplement B (Ed. 97-01), Table 2 Duty Factor of Modes Commonly Used by Amateurs, p. 14"}],"limitTables":[{"id":"fcc1310Controlled","boundary":"stricter","source":"fcc1310","clause":"47 CFR §1.1310(e)(1) Table 1 (i)","averagingMin":6,"units":{"E":"V/m","H":"A/m","S":"mW/cm2"},"rows":[{"fMinMHz":0.3,"fMaxMHz":3,"E":"614","H":"1.63","S":"100"},{"fMinMHz":3,"fMaxMHz":30,"minExclusive":true,"E":"1842/f","H":"4.89/f","S":"900/f^2"},{"fMinMHz":30,"fMaxMHz":300,"minExclusive":true,"E":"61.4","H":"0.163","S":"1.0"},{"fMinMHz":300,"fMaxMHz":1500,"minExclusive":true,"S":"f/300"},{"fMinMHz":1500,"fMaxMHz":100000,"minExclusive":true,"S":"5"}]},{"id":"fcc1310Uncontrolled","boundary":"stricter","source":"fcc1310","clause":"47 CFR §1.1310(e)(1) Table 1 (ii)","averagingMin":30,"units":{"E":"V/m","H":"A/m","S":"mW/cm2"},"rows":[{"fMinMHz":0.3,"fMaxMHz":1.34,"E":"614","H":"1.63","S":"100"},{"fMinMHz":1.34,"fMaxMHz":30,"minExclusive":true,"E":"824/f","H":"2.19/f","S":"180/f^2"},{"fMinMHz":30,"fMaxMHz":300,"minExclusive":true,"E":"27.5","H":"0.073","S":"0.2"},{"fMinMHz":300,"fMaxMHz":1500,"minExclusive":true,"S":"f/1500"},{"fMinMHz":1500,"fMaxMHz":100000,"minExclusive":true,"S":"1.0"}]}],"exemptionTables":[{"id":"fcc1307","boundary":"stricter","source":"fcc1307","clause":"47 CFR §1.1307(b)(3)(i)(C) Table 1","note":"Threshold ERP in W = R^2 * expression, R in m; valid only for R >= lambda/2pi.","rows":[{"fMinMHz":0.3,"fMaxMHz":1.34,"erpPerR2":"1920"},{"fMinMHz":1.34,"fMaxMHz":30,"minExclusive":true,"maxExclusive":true,"erpPerR2":"3450/f^2"},{"fMinMHz":30,"fMaxMHz":300,"erpPerR2":"3.83"},{"fMinMHz":300,"fMaxMHz":1500,"minExclusive":true,"erpPerR2":"0.0128*f"},{"fMinMHz":1500,"fMaxMHz":100000,"minExclusive":true,"erpPerR2":"19.2"}]}],"modeTables":[{"id":"oet65bTable2","source":"oet65b","clause":"OET-65B Table 2","factors":[{"mode":"ssb","factor":0.2,"grade":"sourced"},{"mode":"ssbProcessed","factor":0.5,"grade":"sourced"},{"mode":"cw","factor":0.4,"grade":"sourced"},{"mode":"fm","factor":1,"grade":"sourced"},{"mode":"rtty","factor":1,"grade":"sourced"},{"mode":"digital","factor":1,"grade":"sourced"},{"mode":"carrier","factor":1,"grade":"sourced"},{"mode":"packet","factor":1,"grade":"estimate"},{"mode":"sstv","factor":1,"grade":"estimate"},{"mode":"am","factor":1,"grade":"estimate"},{"mode":"atv","factor":1,"grade":"estimate"},{"mode":"atvVsb","factor":1,"grade":"estimate"}]}],"ruleSets":[{"id":"us","version":"47 CFR §1.1310 and §1.1307(b) (85 FR 18145, 2020); OET-65 Ed. 97-01 with Supplement B","method":"farField","tiers":[{"tier":"controlled","table":"fcc1310Controlled"},{"tier":"uncontrolled","table":"fcc1310Uncontrolled"}],"modeTable":"oet65bTable2","exemptionTable":"fcc1307","sources":["fcc1310","fcc1307","oet65b"]}]}}</script>
+<article class="prose gap-top">
+<nav class="toc" aria-labelledby="toc-h"><p id="toc-h" class="toc-h">On this page</p><ol><li><a href="#method">How the distance is worked out</a></li><li><a href="#limits">Controlled and uncontrolled limits</a></li><li><a href="#modes">Mode factors and time on the air</a></li><li><a href="#exempt">The exemption test</a></li><li><a href="#near">Close to the antenna</a></li><li><a href="#elsewhere">Outside the United States</a></li></ol></nav>
+<h2 id="method">How the distance is worked out</h2>
+<p>The FCC lets amateurs evaluate exposure with the far-field equations of OET Bulletin 65. Power density at distance R, with the EPA ground reflection factor (field × 1.6, power × 2.56), is</p><p class="eq">S = 2.56 × EIRP / (4π R²)</p><p>Set S to the limit and solve for R. EIRP is the time-averaged power at the antenna times the antenna gain: PEP × mode factor × share of time on the air, less the feedline loss. The result is shown with ground reflection, and without it for comparison.</p>
+<h2 id="limits">Controlled and uncontrolled limits</h2>
+<p>47 CFR §1.1310 sets two tiers. <strong>Controlled</strong> (occupational) applies to you and to people who know about the exposure and can do something about it, averaged over 6 minutes. <strong>Uncontrolled</strong> (general population) applies to neighbours, family and passers-by, averaged over 30 minutes. Below 1.34 MHz and above 30 MHz the limits are flat; between, they fall with the square of the frequency, which is why 10 m needs more distance than 40 m at the same power.</p><p class="table-cap" aria-hidden="true">FCC limits at the top of each US band, in mW/cm²</p><div class="table-wrap" role="region" aria-label="FCC limits at the top of each US band, in mW/cm²" tabindex="0"><table class="num-table"><caption class="sr">FCC limits at the top of each US band, in mW/cm²</caption>
+<thead><tr><th scope="col">Band</th><th scope="col">Frequency</th><th scope="col">Controlled</th><th scope="col">Uncontrolled</th><th scope="col">Uncontrolled distance: 100 W SSB, 50 % on the air, dipole</th></tr></thead>
+<tbody><tr><th scope="row">160 m</th><td>2 MHz</td><td>100</td><td>45</td><td>3 ⅜″</td></tr>
+<tr><th scope="row">80 m</th><td>4 MHz</td><td>56.25</td><td>11.25</td><td>6 ¹³⁄₁₆″</td></tr>
+<tr><th scope="row">40 m</th><td>7.3 MHz</td><td>16.889</td><td>3.378</td><td>1′ 0 ⅜″</td></tr>
+<tr><th scope="row">30 m</th><td>10.15 MHz</td><td>8.736</td><td>1.747</td><td>1′ 5 ¼″</td></tr>
+<tr><th scope="row">20 m</th><td>14.35 MHz</td><td>4.371</td><td>0.874</td><td>2′ 0 ⅜″</td></tr>
+<tr><th scope="row">17 m</th><td>18.168 MHz</td><td>2.727</td><td>0.545</td><td>2′ 6 ¹³⁄₁₆″</td></tr>
+<tr><th scope="row">15 m</th><td>21.45 MHz</td><td>1.956</td><td>0.391</td><td>3′ 0 ⅜″</td></tr>
+<tr><th scope="row">12 m</th><td>24.99 MHz</td><td>1.441</td><td>0.288</td><td>3′ 6 ⅜″</td></tr>
+<tr><th scope="row">10 m</th><td>29.7 MHz</td><td>1.02</td><td>0.204</td><td>4′ 2 ⅜″</td></tr>
+<tr><th scope="row">6 m</th><td>54 MHz</td><td>1</td><td>0.2</td><td>4′ 2 ⅞″</td></tr>
+<tr><th scope="row">2 m</th><td>148 MHz</td><td>1</td><td>0.2</td><td>4′ 2 ⅞″</td></tr>
+<tr><th scope="row">1.25 m</th><td>225 MHz</td><td>1</td><td>0.2</td><td>4′ 2 ⅞″</td></tr>
+<tr><th scope="row">70 cm</th><td>450 MHz</td><td>1.5</td><td>0.3</td><td>3′ 5 ⁹⁄₁₆″</td></tr>
+<tr><th scope="row">33 cm</th><td>928 MHz</td><td>3.093</td><td>0.619</td><td>2′ 4 ¹⁵⁄₁₆″</td></tr>
+<tr><th scope="row">23 cm</th><td>1,300 MHz</td><td>4.333</td><td>0.867</td><td>2′ 0 ⁷⁄₁₆″</td></tr></tbody></table></div>
+<h2 id="modes">Mode factors and time on the air</h2>
+<p>Average power is far below PEP for most voice modes. OET-65 Supplement B, Table 2, gives the factors used here. Modes it does not list are taken as constant envelope, the safe side, and marked as an estimate.</p><p class="table-cap" aria-hidden="true">Mode factors (average power / PEP)</p><div class="table-wrap" role="region" aria-label="Mode factors (average power / PEP)" tabindex="0"><table class="num-table"><caption class="sr">Mode factors (average power / PEP)</caption>
+<thead><tr><th scope="col">Mode</th><th scope="col">Factor</th><th scope="col">Basis</th></tr></thead>
+<tbody><tr><th scope="row" class="l">SSB voice</th><td>0.2</td><td class="l">OET-65 Supplement B, Table 2</td></tr>
+<tr><th scope="row" class="l">SSB voice, heavy processing</th><td>0.5</td><td class="l">OET-65 Supplement B, Table 2</td></tr>
+<tr><th scope="row" class="l">CW</th><td>0.4</td><td class="l">OET-65 Supplement B, Table 2</td></tr>
+<tr><th scope="row" class="l">FM voice</th><td>1.0</td><td class="l">OET-65 Supplement B, Table 2</td></tr>
+<tr><th scope="row" class="l">RTTY</th><td>1.0</td><td class="l">OET-65 Supplement B, Table 2</td></tr>
+<tr><th scope="row" class="l">FT8, FT4 and other digital</th><td>1.0</td><td class="l">OET-65 Supplement B, Table 2</td></tr>
+<tr><th scope="row" class="l">Carrier (tuning)</th><td>1.0</td><td class="l">OET-65 Supplement B, Table 2</td></tr>
+<tr><th scope="row" class="l">Packet</th><td>1.0</td><td class="l">Not listed: constant envelope assumed (estimate)</td></tr>
+<tr><th scope="row" class="l">SSTV</th><td>1.0</td><td class="l">Not listed: constant envelope assumed (estimate)</td></tr>
+<tr><th scope="row" class="l">AM voice</th><td>1.0</td><td class="l">Not listed: constant envelope assumed (estimate)</td></tr>
+<tr><th scope="row" class="l">ATV, AM</th><td>1.0</td><td class="l">Not listed: constant envelope assumed (estimate)</td></tr>
+<tr><th scope="row" class="l">ATV, vestigial sideband</th><td>1.0</td><td class="l">Not listed: constant envelope assumed (estimate)</td></tr></tbody></table></div><p>Time on the air is the busiest part of the averaging window. With an on/off cycle the calculator takes the window that starts with a key-down: 5 minutes on and 5 off fills a whole 6-minute window (100 %), but only 15 of 30 minutes.</p>
+<h2 id="exempt">The exemption test</h2>
+<p>The FCC rules of 2020 added §1.1307(b)(3)(i)(C): it exempts a station whose ERP at a given distance is at or below a threshold, for example 3450 R² / f² watts between 1.34 and 30 MHz. Enter the distance to people and the calculator runs the test with your 30-minute average ERP. The table is only valid at least λ/2π from the antenna; closer than that, the full evaluation above applies.</p>
+<h2 id="near">Close to the antenna</h2>
+<p>Inside λ/2π the far-field equations do not strictly hold. OET-65 notes that for wire antennas they over-predict there, which errs on the safe side, so the result still stands with a note. Small transmitting loops are the exception: their near field is stronger than the estimate, so tick <em>Magnetic loop</em> and the calculator gives no distance inside λ/2π.</p>
+<h2 id="elsewhere">Outside the United States</h2>
+<p>This page uses the US rules. The app also evaluates by the German BNetzA method with the 26. BImSchV limits, by the ICNIRP 2020 general public levels that Ofcom requires in the UK, and by ICNIRP 2020 or 1998 for other countries, and saves each evaluation as a dated record.</p>
+<nav class="next" aria-label="More calculators"><p class="next-h">More calculators</p><ul><li><a href="../dipole-calculator/">Dipole calculator<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></li><li><a href="../coax-loss-calculator/">Coax loss and SWR<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></li></ul></nav>
+<aside class="card app-note gap-top" aria-labelledby="app-h">
+<h2 id="app-h" class="h3">The same maths in your pocket</h2>
+<p>In the app each band and antenna of your station becomes one row of an evaluation, saved with the date, the rules and every source, and shared as a PDF you can keep with your licence papers.</p>
+<p class="small">Offline, no account, no ads, no subscription. The calculators on this site are free in the app too; Pro is one payment.</p>
+<div class="stores"><span class="store soon"><small>Google Play</small><b>Coming soon</b></span><span class="store soon"><small>App Store</small><b>Coming soon</b></span></div>
+</aside>
+<h2 id="sources">Sources</h2>
+<ol class="sources"><li id="src-fcc1310"><a href="https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-1/subpart-I/section-1.1310" rel="noopener">47 CFR §1.1310(e)(1) Table 1, Limits for Maximum Permissible Exposure</a></li><li id="src-fcc1307"><a href="https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-1/subpart-I/section-1.1307" rel="noopener">47 CFR §1.1307(b)(3)(i)(C) Table 1, single RF source exemption thresholds</a></li><li id="src-oet65"><a href="https://transition.fcc.gov/Bureaus/Engineering_Technology/Documents/bulletins/oet65/oet65.pdf" rel="noopener">FCC OET Bulletin 65, Edition 97-01, eq. (4) and (7)</a></li><li id="src-oet65b"><a href="https://transition.fcc.gov/Bureaus/Engineering_Technology/Documents/bulletins/oet65/oet65b.pdf" rel="noopener">FCC OET Bulletin 65 Supplement B (amateur), Table 2 and the averaging examples</a></li></ol>
+<p class="callout">Calculations are aids; go by the rules in force and your own measurement.</p>
+<p class="updated">Checked against the sources on November 2, 2026.</p>
+</article>
+</div>
+
+</main>
+<footer><div class="wrap">
+<p class="disclaimer">Calculations are aids; go by the rules in force and your own measurement.</p>
+<p>Feedpoint is made by MufaTech, a small studio that builds offline tools you pay for once.</p>
+<nav aria-label="Site"><a href="../">Feedpoint</a><a href="../dipole-calculator/">Dipole calculator</a><a href="../coax-loss-calculator/">Coax loss and SWR</a><a href="../rf-exposure-calculator/">RF exposure calculator</a><a href="../support/">Help</a><a href="../privacy/">Privacy</a><a href="mailto:hello@mufatech.com">hello@mufatech.com</a></nav>
+</div></footer>
+<script type="module" src="../assets/calc-ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mufa-tech.github.io/feedpoint/sitemap.xml

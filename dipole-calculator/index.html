@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Dipole calculator with trim from measurement</title>
+<meta name="description" content="Half-wave dipole length for any frequency with the end-effect factor K, then how much to cut from each leg after your analyzer reading. Free, no sign-up.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F1ECE2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://mufa-tech.github.io/feedpoint/dipole-calculator/">
+<link rel="alternate" hreflang="en" href="https://mufa-tech.github.io/feedpoint/dipole-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://mufa-tech.github.io/feedpoint/dipole-calculator/">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="preload" href="../assets/fonts/FiraSans-Regular.woff" as="font" type="font/woff" crossorigin>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Feedpoint">
+<meta property="og:title" content="Dipole calculator with trim from measurement">
+<meta property="og:description" content="Half-wave dipole length for any frequency with the end-effect factor K, then how much to cut from each leg after your analyzer reading. Free, no sign-up.">
+<meta property="og:url" content="https://mufa-tech.github.io/feedpoint/dipole-calculator/">
+<meta property="og:image" content="https://mufa-tech.github.io/feedpoint/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../"><img src="../assets/icon.svg" alt="" width="32" height="32">Feedpoint</a>
+<nav class="main" aria-label="Main menu"><a href="../dipole-calculator/" aria-current="page">Dipole</a><a href="../coax-loss-calculator/">Coax and SWR</a><a href="../rf-exposure-calculator/">RF exposure</a><a href="../support/">Help</a></nav>
+
+</div></header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<p class="crumb"><a href="../">Feedpoint</a></p>
+<h1>Dipole calculator</h1>
+<p class="lead">The half-wave dipole length for your frequency, and the cut to make once your analyzer shows where the wire really resonates.</p>
+<div class="calc">
+<form class="panel" id="calc-form" data-calc="dipole" novalidate>
+<fieldset class="choice"><legend>Lengths in</legend><div class="pills"><label class="pill"><input type="radio" name="units" value="ft" checked><span>feet and inches</span></label><label class="pill"><input type="radio" name="units" value="m"><span>metres</span></label></div></fieldset>
+<div class="field"><label for="d-f">Frequency</label>
+<div class="joined"><input id="d-f" name="d-f" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="7.1" required aria-describedby="d-f-hint d-f-err"><span class="unit">MHz</span></div>
+<span class="hint" id="d-f-hint">The middle of the part of the band you use.</span><span class="err" id="d-f-err" hidden></span></div>
+<div class="field"><span class="label" id="d-f-l">Bands</span><div class="opts" role="group" aria-labelledby="d-f-l" data-band-for="d-f"><button type="button" data-f="1.9" aria-pressed="false">160 m</button><button type="button" data-f="3.65" aria-pressed="false">80 m</button><button type="button" data-f="5.36" aria-pressed="false">60 m</button><button type="button" data-f="7.1" aria-pressed="true">40 m</button><button type="button" data-f="10.125" aria-pressed="false">30 m</button><button type="button" data-f="14.175" aria-pressed="false">20 m</button><button type="button" data-f="18.118" aria-pressed="false">17 m</button><button type="button" data-f="21.225" aria-pressed="false">15 m</button><button type="button" data-f="24.94" aria-pressed="false">12 m</button><button type="button" data-f="28.5" aria-pressed="false">10 m</button><button type="button" data-f="50.15" aria-pressed="false">6 m</button></div></div>
+<div class="field-row two"><div class="field"><label for="d-k">End effect K</label>
+<input id="d-k" name="d-k" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="0.95" aria-describedby="d-k-hint d-k-err">
+<span class="hint" id="d-k-hint">Wire resonates a little shorter than a free-space half wave. 0.95 is the usual start for thin wire; thicker or insulated wire is lower.</span><span class="err" id="d-k-err" hidden></span></div><div class="field"><span class="label" aria-hidden="true">&#8203;</span><div class="opts"><button type="button" id="d-arrl" aria-pressed="false">Use 468 / f</button></div></div></div>
+<fieldset class="sub"><legend>Trim from measurement</legend>
+<p class="small">Measure the resonance (lowest SWR) with your analyzer, then enter it.</p>
+<div class="field-row two"><div class="field"><label for="t-len">Whole wire now, both legs</label>
+<div class="joined"><input id="t-len" name="t-len" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" data-kind="length" value="65' 9-5/8&quot;" aria-describedby="t-len-hint t-len-err"><span class="unit" data-unit="len">ft-in</span></div>
+<span class="hint" id="t-len-hint">The design length. Change it if you cut it differently.</span><span class="err" id="t-len-err" hidden></span></div><div class="field"><label for="t-meas">I measured resonance at</label>
+<div class="joined"><input id="t-meas" name="t-meas" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="t-meas-err"><span class="unit">MHz</span></div>
+<span class="err" id="t-meas-err" hidden></span></div></div>
+</fieldset>
+</form>
+<section class="results" aria-labelledby="res-h">
+<h2 id="res-h" class="sr">Result</h2>
+<div id="calc-nojs" class="callout"><p>This calculator runs in your browser and needs JavaScript. Nothing is sent anywhere.</p></div>
+<div id="res" class="res-card card" aria-live="polite" hidden></div>
+<p class="note">Worked out in your browser. Nothing you type leaves this page.</p>
+</section>
+</div>
+<script type="application/json" id="calc-data">{"locale":"en-US","decimal":".","units":"ft","t":{"errEmpty":"Enter a number.","errNumber":"That is not a number this page can read.","errFeet":"Write it like 66' 2 5/8\" or 66.2.","errPositive":"It has to be more than 0.","warning":"Note","stop":"No result","good":"Fine","howTitle":"How it was worked out","ft":"ft","m":"m","cm":"cm","mhz":"MHz","db":"dB","w":"W","percent":"%","waiting":"Enter a frequency to see the length.","total":"Total length, tip to tip","leg":"Each leg","halfWave":"Free-space half wave","lengthFormula":"L = K × c / 2f = {k} × 299.792458 / (2 × {f}) = {l}","arrlNote":"K {k} is the ARRL rule 468 / f in feet.","kRange":"K must be between 0.80 and 1.10.","trimWaiting":"Enter the resonance you measured to see the cut.","cutLegs":"Cut from each leg","addLegs":"Add to each leg","onTarget":"No cut needed","onTargetDetail":"It already resonates at {target}.","newLength":"Whole wire after","trimFormula":"L new = L × f measured / f target = {l} × {fm} / {ft} = {lnew}","learnedK":"This wire's own K","learnedKNote":"Use it to cut the same wire for another band.","learnedKOut":"K {k} is outside 0.80 to 1.10. The reading may be on a harmonic, or on another wire.","large":"Large change. Cut half, measure again, then cut the rest."},"arrlK":0.9516343469854736,"defaultK":0.95}</script>
+<article class="prose gap-top">
+<nav class="toc" aria-labelledby="toc-h"><p id="toc-h" class="toc-h">On this page</p><ol><li><a href="#formula">The formula</a></li><li><a href="#trim">Trimming from what your analyzer reads</a></li><li><a href="#k">Your wire has its own K</a></li><li><a href="#shapes">Inverted-V and other shapes</a></li></ol></nav>
+<h2 id="formula">The formula</h2>
+<p>A half-wave dipole is a little shorter than half a wavelength in free space. The difference is the end effect, written as a factor K:</p><p class="eq">L = K × c / 2f</p><p>c is the speed of light, 299.792458 m per microsecond, and f is the frequency in MHz, so L comes out in metres. The old rule <strong>468 / f</strong> in feet is the same formula with K = 0.9516. For thin bare wire high in the clear, K is usually between 0.95 and 0.97. Insulated wire, thick wire and low wires come out shorter.</p><p class="table-cap" aria-hidden="true">Flat half-wave dipole, thin wire: total length tip to tip</p><div class="table-wrap" role="region" aria-label="Flat half-wave dipole, thin wire: total length tip to tip" tabindex="0"><table class="num-table"><caption class="sr">Flat half-wave dipole, thin wire: total length tip to tip</caption>
+<thead><tr><th scope="col">Band</th><th scope="col">Frequency</th><th scope="col">K 0.95</th><th scope="col">468 / f</th><th scope="col">468 / f, other unit</th></tr></thead>
+<tbody><tr><th scope="row">160 m</th><td>1.9 MHz</td><td>245′ 10 ¹¹⁄₁₆″</td><td>246′ 3 ¹³⁄₁₆″</td><td>75.08 m</td></tr>
+<tr><th scope="row">80 m</th><td>3.65 MHz</td><td>128′ 0″</td><td>128′ 2 ⅝″</td><td>39.08 m</td></tr>
+<tr><th scope="row">60 m</th><td>5.36 MHz</td><td>87′ 1 ¹⁵⁄₁₆″</td><td>87′ 3 ¾″</td><td>26.61 m</td></tr>
+<tr><th scope="row">40 m</th><td>7.1 MHz</td><td>65′ 9 ⅝″</td><td>65′ 11″</td><td>20.09 m</td></tr>
+<tr><th scope="row">30 m</th><td>10.125 MHz</td><td>46′ 1 ¹¹⁄₁₆″</td><td>46′ 2 ¹¹⁄₁₆″</td><td>14.09 m</td></tr>
+<tr><th scope="row">20 m</th><td>14.175 MHz</td><td>32′ 11 ½″</td><td>33′ 0 ³⁄₁₆″</td><td>10.06 m</td></tr>
+<tr><th scope="row">17 m</th><td>18.118 MHz</td><td>25′ 9 ⁷⁄₁₆″</td><td>25′ 9 ¹⁵⁄₁₆″</td><td>7.87 m</td></tr>
+<tr><th scope="row">15 m</th><td>21.225 MHz</td><td>22′ 0 ⅛″</td><td>22′ 0 ⁹⁄₁₆″</td><td>6.72 m</td></tr>
+<tr><th scope="row">12 m</th><td>24.94 MHz</td><td>18′ 8 ¹³⁄₁₆″</td><td>18′ 9 ³⁄₁₆″</td><td>5.72 m</td></tr>
+<tr><th scope="row">10 m</th><td>28.5 MHz</td><td>16′ 4 ¹¹⁄₁₆″</td><td>16′ 5 ¹⁄₁₆″</td><td>5.01 m</td></tr>
+<tr><th scope="row">6 m</th><td>50.15 MHz</td><td>9′ 3 ¹³⁄₁₆″</td><td>9′ 4″</td><td>2.84 m</td></tr></tbody></table></div>
+<h2 id="trim">Trimming from what your analyzer reads</h2>
+<p>Cut the wire a little long, hang it where it will live, and find the frequency with the lowest SWR. Resonance moves in inverse proportion to length, so the length that hits your target is:</p><p class="eq">L new = L × f measured / f target</p><p>On a centre-fed dipole half of the change comes off each leg. Small changes are accurate in one step. For a change of more than about 10 %, cut half, measure again and finish from the new reading.</p><p class="table-cap" aria-hidden="true">A 40 m dipole, first cut</p><div class="table-wrap" role="region" aria-label="A 40 m dipole, first cut" tabindex="0"><table class="num-table"><caption class="sr">A 40 m dipole, first cut</caption>
+<thead><tr><th scope="col">Step</th><th scope="col">Value</th></tr></thead>
+<tbody><tr><th scope="row" class="l">Cut for 7.100 MHz with K 0.95</th><td>65′ 9 ⅝″ · 20.06 m</td></tr>
+<tr><th scope="row" class="l">Analyzer shows the lowest SWR at</th><td>6.95 MHz</td></tr>
+<tr><th scope="row" class="l">Target</th><td>7.1 MHz</td></tr>
+<tr><th scope="row" class="l">Whole wire after the cut</th><td>64′ 4 ¹⁵⁄₁₆″ · 19.63 m</td></tr>
+<tr><th scope="row" class="l">Cut from each leg</th><td>8 ⁵⁄₁₆″ · 21.2 cm</td></tr>
+<tr><th scope="row" class="l">This wire's own K</th><td>0.9299</td></tr></tbody></table></div>
+<h2 id="k">Your wire has its own K</h2>
+<p>The first measurement also tells you the K of this wire, in this place: K = L / (λ / 2) at the frequency it resonates. Height, insulation, the ground and nearby metal all go into it. Use that K for the next band, a fan dipole leg or a link dipole section, and the first cut lands much closer.</p><p>The app keeps every measurement. From two or more cuts it also learns a fixed offset for the feed region and the balun leads, which removes the slow "cut, measure, still long" approach.</p>
+<h2 id="shapes">Inverted-V and other shapes</h2>
+<p>An inverted-V starts from the same length. Drooping legs lower the resonance by a few percent, and how much depends on the apex angle, the height and the ground, so no fixed factor is honest. Start from the flat length and trim. The app covers inverted-V, end-fed half-wave, off-centre-fed, verticals with radials, J-poles, loops and more, each with trim from measurement.</p>
+<nav class="next" aria-label="More calculators"><p class="next-h">More calculators</p><ul><li><a href="../coax-loss-calculator/">Coax loss and SWR<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></li><li><a href="../rf-exposure-calculator/">RF exposure calculator<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></li></ul></nav>
+<aside class="card app-note gap-top" aria-labelledby="app-h">
+<h2 id="app-h" class="h3">The same maths in your pocket</h2>
+<p>In the app the trim history is kept per antenna, the learned K carries over to your other bands, and a trim card shows the cut on a drawing of your antenna.</p>
+<p class="small">Offline, no account, no ads, no subscription. The calculators on this site are free in the app too; Pro is one payment.</p>
+<div class="stores"><span class="store soon"><small>Google Play</small><b>Coming soon</b></span><span class="store soon"><small>App Store</small><b>Coming soon</b></span></div>
+</aside>
+<h2 id="sources">Sources</h2>
+<ol class="sources"><li id="src-arrl"><a href="https://www.arrl.org/arrl-antenna-book" rel="noopener">ARRL Antenna Book: dipole 468/f ft; transmission lines, total loss with SWR</a></li><li id="src-nist"><a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9" rel="noopener">NIST SP 811, Appendix B.9: foot, inch</a></li></ol>
+<p class="callout">Calculations are aids; go by the rules in force and your own measurement.</p>
+<p class="updated">Checked against the sources on November 2, 2026.</p>
+</article>
+</div>
+
+</main>
+<footer><div class="wrap">
+<p class="disclaimer">Calculations are aids; go by the rules in force and your own measurement.</p>
+<p>Feedpoint is made by MufaTech, a small studio that builds offline tools you pay for once.</p>
+<nav aria-label="Site"><a href="../">Feedpoint</a><a href="../dipole-calculator/">Dipole calculator</a><a href="../coax-loss-calculator/">Coax loss and SWR</a><a href="../rf-exposure-calculator/">RF exposure calculator</a><a href="../support/">Help</a><a href="../privacy/">Privacy</a><a href="mailto:hello@mufatech.com">hello@mufatech.com</a></nav>
+</div></footer>
+<script type="module" src="../assets/calc-ui.js"></script>
+</body>
+</html>
